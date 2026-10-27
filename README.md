@@ -1,113 +1,68 @@
-# 人工智慧期中報告：Google Colab 部署 Python 專案
+# Google Colab 使用 TensorFlow 進行自訂物件偵測 (Custom Object Detection)
 
-## 一、組員
-- 組員一：黃嘉彬
-- 班級／組別：傳播3A
+本專案為 **115學年度 人工智慧課程 期中報告**，主要展示如何在 Google Colaboratory (Colab) 雲端平台上建置、訓練並執行基於 TensorFlow Object Detection API 的自訂物件偵測模型實作流程。
 
-## 二、參考文章
-- 文章名稱：Google Colab 部署自己的机器学习项目
-- 文章網址：
-  https://blog.csdn.net/weixin_37589575/article/details/94591580
+---
 
-## 三、實作目的
-依照指定文章，將 Python 專案資料夾上傳至 Google Drive，
-使用 Google Colab 掛載雲端硬碟，
-切換至專案所在位置並執行 main.py。
+## 📌 專案簡介
 
-本次測試內容為匯入 PyTorch 並列印成功訊息，
-沒有進行模型訓練。
+在電腦視覺領域中，物件偵測（Object Detection）不僅需要識別影像中的物體類別，還需要標註出其具體的位置（Bounding Box）。本範例透過 Google Colab 提供的免費 GPU 算力，示範從環境配置、資料集準備、模型訓練到最終推論驗證的全流程。
 
-## 四、使用環境
-- Google Colab
-- Google Drive
-- Python 3
-- PyTorch
-- 硬體加速器：（填入實際設定，例如 CPU 或 GPU）
+- **授課老師**：葉芳銘 教授
+- **指定文章主題**：tensorflow圖形檢測_使用Google Colab使用Tensorflow進行自定義對象檢測
 
-## 五、檔案結構
-```text
-AI-Colab-Report/
-├── README.md
-├── Colab_Project_Report.ipynb
-└── test/
-    └── main.py
+---
+
+## 🛠️ 環境與工具
+
+- **開發平台**：[Google Colaboratory](https://colab.research.google.com/) (GPU 執行階段)
+- **程式語言**：Python 3.x
+- **核心框架**：TensorFlow 2.x / TensorFlow Object Detection API
+- **輔助工具**：Google Drive (用於儲存資料集與模型權重)
+
+---
+
+## 🚀 執行流程與步驟
+
+本專案 `TensorFlow_Object_Detection_Colab.ipynb` 包含以下關鍵步驟：
+
+### 1. 環境設定與 GPU 確認
+* 切換 Colab 執行階段為 GPU (`T4 GPU`)。
+* 檢查 GPU 狀態與 TensorFlow 版本。
+
+### 2. 安裝 TensorFlow Object Detection API
+* 下載 TensorFlow Models 官方 GitHub 儲存庫。
+* 安裝 Protobuf 並編譯相關 Protobuf 檔案。
+* 設定環境變數並完成 API 安裝作業。
+
+### 3. 資料集準備與標註 (Dataset Preparation)
+* 載入自訂圖片資料集與標註檔 (`.xml` 或 `.json`)。
+* 將標註資料轉為 TensorFlow 專用的 `TFRecord` 格式。
+* 建立類別映射檔 (`label_map.pbtxt`)。
+
+### 4. 模型配置與訓練 (Model Training)
+* 下載預訓練模型權重 (例如: SSD MobileNet V2 FPN)。
+* 設定訓練配置文件 (`pipeline.config`) 包含學習率、Batch Size 與路徑設定。
+* 執行模型訓練作業。
+
+### 5. 模型匯出與推論測試 (Inference)
+* 匯出訓練完成的凍結模型 (SavedModel / Checkpoint)。
+* 載入測試圖片並進行物件偵測測試。
+* 繪製標註框 (Bounding Boxes) 與信心分數 (Confidence Scores)。
+
+---
+
+## 📁 檔案結構
+
+```
+├── README.md                              # 本說明文件
+└── TensorFlow_Object_Detection_Colab.ipynb  # Colab 主程式碼檔
 ```
 
-## 六、main.py 內容
-```python
-import torch
-print('Run successfully!')
-```
+---
 
-## 七、執行方式
+## 📝 執行說明
 
-### 1. 準備專案
-將本專案中的 test 資料夾上傳到 Google Drive
-「我的雲端硬碟」根目錄。
-
-預期位置：
-我的雲端硬碟/test/main.py
-
-### 2. 開啟筆記本
-下載 Colab_Project_Report.ipynb，
-在 Google Colab 中使用「檔案 → 上傳筆記本」開啟。
-
-### 3. 設定環境
-依照課堂與原文要求設定執行環境，
-再依序執行筆記本中的儲存格。
-
-### 4. 掛載 Google Drive
-```python
-from google.colab import drive
-drive.mount('/content/drive')
-```
-
-### 5. 查看目錄
-```python
-!ls
-```
-
-### 6. 切換至專案資料夾
-```python
-import os
-os.chdir('/content/drive/MyDrive/test')
-print("目前資料夾：", os.getcwd())
-```
-
-### 7. 確認程式檔案
-```python
-!ls
-```
-
-應看到 main.py。
-
-### 8. 執行程式
-```python
-!python main.py
-```
-
-## 八、實際執行結果
-（完成後填寫實際觀察結果。）
-
-若測試成功，輸出為：
-```text
-Run successfully!
-```
-
-此結果表示程式完成 PyTorch 匯入與列印，
-不代表曾經訓練模型，也不代表已驗證 GPU 運算。
-
-## 九、與原文的差異
-- 原文使用舊版 Colab 介面，本次依目前介面操作。
-- Google Drive 授權依目前介面完成。
-- 本次使用的專案路徑為：
-  /content/drive/MyDrive/test
-
-## 十、遇到的問題與解決方式
-（只保留實際遇到的問題。）
-
-例如：
-- 找不到 Python 檔案：
-  檢查檔案是否上傳、檔名是否正確、
-  目前工作目錄是否為 test。
-<img width="1905" height="898" alt="image" src="https://github.com/user-attachments/assets/ba7d4efa-eaa3-4c4d-8c8d-95b0cbab824d" />
+1. 點擊 GitHub 中的 `.ipynb` 檔案，可選擇開啟於 Google Colab 中執行。
+2. 執行前請確認已於 Colab 頂端選單選擇 `執行階段` -> `變更執行階段類型` -> `Hardware accelerator: GPU`。
+3. 依序執行各個 Code Cell 即可完成模型構建與驗證。
