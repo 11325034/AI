@@ -1,4 +1,4 @@
-# Google Colab 使用 TensorFlow 進行自訂物件偵測 (Custom Object Detection)
+# 115 人工智慧期中報告:Google Colab 使用 TensorFlow 進行自訂物件偵測 (Custom Object Detection)
 
 本專案為 **115學年度 人工智慧課程 期中報告**，主要展示如何在 Google Colaboratory (Colab) 雲端平台上建置、訓練並執行基於 TensorFlow Object Detection API 的自訂物件偵測模型實作流程。
 
