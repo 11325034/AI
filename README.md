@@ -198,6 +198,8 @@ XML 檔案包含物件類別及邊界框等資訊，可作為後續整理標註�
 
 圖 9-1　模型匯出程式執行畫面圖,匯出後的模型檔案
 
+模型：https://drive.google.com/file/d/1rJblVvCRY12de5d-5wtpFhWnQA5zMEJy/view?usp=sharing
+
 ## 十、錯誤排除與注意事項
 
 ### 10.1 找不到 object_detection 模組
