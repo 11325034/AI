@@ -42,7 +42,7 @@
 
 安裝完成後，可前往 Google 圖片搜尋需要辨識的水果，例如 Apple（蘋果），再使用擴充程式下載所需圖片。
 
-![03]()
+![03](https://github.com/11325034/AI/blob/main/3-1.png)
 圖 3-1　Download All Images 擴充程式安裝畫面
 
 
